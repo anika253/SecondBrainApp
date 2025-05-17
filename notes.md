@@ -18,5 +18,17 @@ schema looks like->
     rootDir to "./src"
     outDir to "./dist"
     ->npm i express
-    ->import statement diff in typescript
+    ->import statement used in typescript instead of the require statement which we used withr react
     ->create src folder and make a src folder inside it
+    express is a library published on npm registry
+    but doesnnt uses typecript ...thus it may give error so u can add this line to ur codebase
+    //@ts-ignore but not a good practice .
+    // exprss is itself written in js only
+    developer wrote inke types alg se
+    to install typescipt with express npm i express alone wont suffice
+
+        ->npm i -D @types/express
+        ->npm i jsonwebtoken,mongoose
+        ->npm i @types/jsonwebtoken
+
+    connnect to mongo db and make a db.ts file where u will write all the logic and schemas here .
