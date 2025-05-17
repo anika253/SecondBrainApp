@@ -1,0 +1,24 @@
+{
+  "name": "secondbrainapp",
+  "version": "1.0.0",
+  "description": "> An end-to-end productivity app built with TypeScript that acts as your digital second brain—capture ideas, manage notes, track tasks, and organize everything in one place.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anika253/SecondBrainApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anika253/SecondBrainApp/issues"
+  },
+  "homepage": "https://github.com/anika253/SecondBrainApp#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "typescipt": "^1.0.0"
+  }
+}
