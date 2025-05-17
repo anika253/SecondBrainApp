@@ -11,7 +11,7 @@ This app is inspired by the "Second Brain" methodology, helping users store thou
 
 ## ✨ Features
 
-- 📝 Create, edit, and delete notes
+- 📝 Create, edit, and delete notes and can share with others whats on your brain 
 - 🧩 Tag-based organization
 - 🔍 Full-text search
 - 🗃️ Markdown support
