@@ -4,7 +4,9 @@
   "description": "> An end-to-end productivity app built with TypeScript that acts as your digital second brain—capture ideas, manage notes, track tasks, and organize everything in one place.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -b",
+    "start": "node dist/index.js",
+    "dev": "npm run build && npm run start"
   },
   "repository": {
     "type": "git",
