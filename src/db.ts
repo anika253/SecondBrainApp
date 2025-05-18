@@ -1,5 +1,7 @@
 import mongoose, { model, Schema } from "mongoose";
-mongoose.connect("mongodb+srv://anika:anika253@cluster0.i2c1xwe.mongodb.net");
+mongoose.connect(
+  "mongodb+srv://anika:anika253@cluster0.i2c1xwe.mongodb.net/secondbrain?retryWrites=true&w=majority"
+);
 const UserSchema = new Schema({
   username: { type: String, unique: true },
   password: String,

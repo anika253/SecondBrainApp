@@ -23,10 +23,11 @@
     "@types/jsonwebtoken": "^9.0.9",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.15.0",
-    "typescipt": "^1.0.0"
+    "mongoose": "^8.15.0"
   },
   "devDependencies": {
-    "@types/express": "^5.0.2"
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.18",
+    "typescript": "^5.8.3"
   }
 }
