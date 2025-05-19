@@ -12,13 +12,13 @@ This app is inspired by the "Second Brain" methodology, helping users store thou
 ## ✨ Features
 
 - 📝 Create, edit, and delete notes and can share with others whats on your brain 
-- 🧩 Tag-based organization
+- 🧩 Tag-based organization and based on vector based database as ChatGPT
 - 🔍 Full-text search
 - 🗃️ Markdown support
 - 📅 Task and project management
 - 🔐 Secure authentication (via JWT or OAuth)
 - ☁️ Cloud-based data persistence (PostgreSQL or MongoDB)
-- 📱 Fully responsive design
+- 📱 Fully responsive design 
 
 ---
 
