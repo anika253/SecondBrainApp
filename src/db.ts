@@ -7,3 +7,19 @@ const UserSchema = new Schema({
   password: String,
 });
 export const UserModel = model("User", UserSchema);
+const ContentSchema = new Schema({
+  title: String,
+  link: String,
+  tags: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Tag",
+    },
+  ],
+  UserId: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+});
+export const ContentMode = model("Content", ContentSchema);

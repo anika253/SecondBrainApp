@@ -141,3 +141,4 @@ in chatwithpdfare all dumped to vector database
 package.json m add a build script to start the typescript project.
 connect db and all
 try catch blocks ka use kro idhr
+try catch block ka use kro jo phat skta h uske lie
