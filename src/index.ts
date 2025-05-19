@@ -1,10 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
 import { UserModel } from "./db";
+import { ContentModel } from "./db";
 import jwt from "jsonwebtoken";
+import { JWT_PASSWORD } from "./config";
+import { userMiddleware } from "./middleware";
 
 const app = express();
-const JWT_PASSWORD = "hinuhunyaar";
+
 app.use(express.json());
 app.post("/api/v1/signup", async (req, res) => {
   const username = req.body.username;
@@ -58,7 +61,17 @@ app.post("/api/v1/signin", async (req, res) => {
   }
 });
 
-app.get("api/v1/content", (req, res) => {});
+app.get("api/v1/content", userMiddleware, (req, res) => {
+  const link = req.body.link;
+  const type = req.body.type;
+  ContentModel.create({
+    link,
+    type,
+    //@ts-ignore
+    userId: req.userId,
+  });
+});
+
 app.delete("./api/v1/content", (req, res) => {});
 app.post("api/v1/brain/share", (req, res) => {});
 app.get("api/v1/brain/:shareLink", (req, res) => {});

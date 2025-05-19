@@ -22,4 +22,4 @@ const ContentSchema = new Schema({
     required: true,
   },
 });
-export const ContentMode = model("Content", ContentSchema);
+export const ContentModel = model("Content", ContentSchema);
