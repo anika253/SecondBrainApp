@@ -61,15 +61,24 @@ app.post("/api/v1/signin", async (req, res) => {
   }
 });
 
-app.get("api/v1/content", userMiddleware, (req, res) => {
-  const link = req.body.link;
-  const type = req.body.type;
-  ContentModel.create({
-    link,
-    type,
-    //@ts-ignore
-    userId: req.userId,
-  });
+app.post("/api/v1/content", userMiddleware, async (req, res) => {
+  const { link, type } = req.body;
+
+  try {
+    const content = await ContentModel.create({
+      link,
+      type,
+      userId: req.userId, // set by middleware
+    });
+
+    res.json({
+      message: "Content created successfully",
+      content,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to create content" });
+  }
 });
 
 app.delete("./api/v1/content", (req, res) => {});

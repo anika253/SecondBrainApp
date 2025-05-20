@@ -10,18 +10,18 @@ declare global {
     }
   }
 }
-
 export const userMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): void => {
   const authHeader = req.headers["authorization"];
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res
+    res
       .status(403)
       .json({ message: "Authorization header missing or malformed" });
+    return; // ✅ just return void
   }
 
   const token = authHeader.split(" ")[1];
@@ -29,8 +29,9 @@ export const userMiddleware = (
   try {
     const decoded = jwt.verify(token, JWT_PASSWORD) as { id: string };
     req.userId = decoded.id;
-    next();
+    next(); // ✅ allowed
   } catch (err) {
-    return res.status(403).json({ message: "Invalid token" });
+    res.status(403).json({ message: "Invalid token" });
+    return; // ✅ return void, not a Response
   }
 };
