@@ -5,6 +5,8 @@ import { ContentModel } from "./db";
 import jwt from "jsonwebtoken";
 import { JWT_PASSWORD } from "./config";
 import { userMiddleware } from "./middleware";
+import { LinkModel } from "./db";
+import { random } from "./utils";
 
 const app = express();
 
@@ -81,7 +83,54 @@ app.post("/api/v1/content", userMiddleware, async (req, res) => {
   }
 });
 
-app.delete("./api/v1/content", (req, res) => {});
-app.post("api/v1/brain/share", (req, res) => {});
-app.get("api/v1/brain/:shareLink", (req, res) => {});
+app.get("/api/v1/content", userMiddleware, async (req, res) => {
+  try {
+    const content = await ContentModel.find({ userId: req.userId });
+    res.json(content);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch content" });
+  }
+});
+
+app.delete("./api/v1/content", userMiddleware, (req, res) => {});
+app.post("api/v1/brain/share", async (req, res) => {
+  const share = req.body.share;
+  if (share) {
+    await LinkModel.create({
+      userId: req.userId,
+      hash: random(10),
+    });
+  } else {
+    LinkModel.deleteOne({
+      userId: req.userId,
+    });
+  }
+  res.json({
+    message: "Link created successfully",
+  });
+});
+app.get("api/v1/brain/:shareLink", async (req, res) => {
+  const hash = req.params.shareLink;
+  const link = await LinkModel.findOne({
+    hash: hash,
+  });
+  if (!link) {
+    res.status(411).json({
+      message: "sorry incorrect input!",
+    });
+    return; // Early return
+  } else {
+    const content = await ContentModel.find({
+      userId: link.userId,
+    });
+    const user = await UserModel.findOne({
+      _id: link.userId,
+    });
+    res.json({
+      username: user?.username,
+      content: content,
+    });
+  }
+});
 app.listen(3000);

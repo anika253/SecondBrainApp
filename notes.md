@@ -142,3 +142,8 @@ package.json m add a build script to start the typescript project.
 connect db and all
 try catch blocks ka use kro idhr
 try catch block ka use kro jo phat skta h uske lie
+fromtend ka folder bnaya aur apna ui component bnaya idhr
+focus on front-end after it making UI components add the folder of frontend to the same workspace
+// shareable link here...
+my brain should be retereivable via a random hash
+via a shareable link
