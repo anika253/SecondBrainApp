@@ -20,7 +20,12 @@ const config_1 = require("./config");
 const middleware_1 = require("./middleware");
 const db_3 = require("./db");
 const utils_1 = require("./utils");
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
+app.use((0, cors_1.default)({
+    origin: "http://localhost:5173",
+    credentials: true, // Only if you're using cookies or auth headers
+}));
 app.use(express_1.default.json());
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const username = req.body.username;
@@ -101,10 +106,19 @@ app.delete("./api/v1/content", middleware_1.userMiddleware, (req, res) => { });
 app.post("api/v1/brain/share", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const share = req.body.share;
     if (share) {
-        yield db_3.LinkModel.create({
-            userId: req.userId,
-            hash: (0, utils_1.random)(10),
-        });
+        try {
+            const hash = (0, utils_1.random)(10);
+            yield db_3.LinkModel.create({
+                userId: req.userId,
+                hash: hash,
+            });
+            res.json({
+                message: "/share" + hash,
+            });
+        }
+        catch (e) {
+            console.log(e);
+        }
     }
     else {
         db_3.LinkModel.deleteOne({
@@ -115,5 +129,28 @@ app.post("api/v1/brain/share", (req, res) => __awaiter(void 0, void 0, void 0, f
         message: "Link created successfully",
     });
 }));
-app.get("api/v1/brain/:shareLink", (req, res) => { });
+app.get("api/v1/brain/:shareLink", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const hash = req.params.shareLink;
+    const link = yield db_3.LinkModel.findOne({
+        hash: hash,
+    });
+    if (!link) {
+        res.status(411).json({
+            message: "sorry incorrect input!",
+        });
+        return; // Early return
+    }
+    else {
+        const content = yield db_2.ContentModel.find({
+            userId: link.userId,
+        });
+        const user = yield db_1.UserModel.findOne({
+            _id: link.userId.toString(),
+        });
+        res.json({
+            username: user === null || user === void 0 ? void 0 : user.username,
+            content: content,
+        });
+    }
+}));
 app.listen(3000);
