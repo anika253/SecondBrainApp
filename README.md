@@ -18,7 +18,8 @@ This app is inspired by the "Second Brain" methodology, helping users store thou
 - 📅 Task and project management
 - 🔐 Secure authentication (via JWT or OAuth)
 - ☁️ Cloud-based data persistence (PostgreSQL or MongoDB)
-- 📱 Fully responsive design 
+- 📱 Fully responsive design
+-   Iam currently working to intergerate a LLM model here !
 
 ---
 
