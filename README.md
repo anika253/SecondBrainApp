@@ -5,7 +5,7 @@
 
 ## 🚀 Overview
 
-This app is inspired by the "Second Brain" methodology, helping users store thoughts, manage knowledge, and improve workflow efficiency. Built entirely using modern full-stack TypeScript.
+This app is inspired by the "Second Brain" methodology, helping users store thoughts, manage knowledge, and improve workflow efficiency. Built entirely using modern full-stack TypeScript and backend supported by database MongoDB and nodeJS.
 
 ---
 
